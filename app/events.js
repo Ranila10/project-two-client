@@ -30,6 +30,32 @@ const onSignIn = function (event) {
     .then(() => authUi.onSignInSuccess())
     .catch(() => authUi.onSignInFailure())
 }
+const onChangePassword = function (event) {
+  event.preventDefault()
+  console.log('now here')
+
+  const form = event.target
+  const data = getFormFields(form)
+  console.log(data)
+
+  authApi
+    .signIn(data)
+    .then(() => authUi.onChangePasswordSuccess())
+    .catch(() => authUi.onChangePasswordFailure())
+}
+const onUpdatePassword = function (event) {
+  event.preventDefault()
+  console.log('now here')
+
+  const form = event.target
+  const data = getFormFields(form)
+  console.log(data)
+
+  authApi
+    .signIn(data)
+    .then(() => authUi.onUpdatePasswordSuccess())
+    .catch(() => authUi.onUpdatePasswordFailure())
+}
 const onSignOut = function (event) {
   event.preventDefault()
   console.log('now here')
@@ -42,7 +68,7 @@ const onSignOut = function (event) {
     .then(() => authUi.onSignOutSuccess())
     .catch(() => authUi.onSignOutFailure())
 }
-const onCreat = function(event) {
+const onCreate = function(event) {
 event.preventDefault()
   console.log('now here')
 
@@ -53,11 +79,13 @@ event.preventDefault()
   authApi.FeedingTracker()
     .then(() => authUi.onCreatFeedingSuccess())
     .catch(() => authUi.onCreatFeedingFailure())
-    
+
 }
 module.exports = {
   onSignUp,
   onSignIn,
+  onChangePassword,
+  onUpdatePassword,
   onSignOut,
-  onCreat
+  onCreate
 }
