@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Feeding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Do not add `link` tags-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Do not add `script` tags-->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
+
+<body>
+  <h1>Feeding Tracker</h1>
+
+  <h3>Sign Up</h3>
+  <form id="sign-up-form">
+    <input name="credentials[email]" type="email" placeholder="Email">
+    <input name="credentials[password]" type="password" placeholder="Enter password">
+    <input name="credentials[password_confirmation]" type="password" placeholder="Enter password again">
+    <button type="submit">Sign Up</button>
+  </form>
+
+  <h3>Sign In</h3>
+  <form id="sign-in-form">
+    <input name="credentials[email]" type="email" placeholder="Email">
+    <input name="credentials[password]" type="password" placeholder="Enter password">
+    <button type="submit">Sign In</button>
+    <button type="submit">sign out</button>
+  </form>
+
+  <h3>Add Feeding</h3>
+
+  <form id="feeding-form">
+    <input name="feeding[day]" type="text" placeholder="Day">
+    <input name="feeding[time]" type="time" placeholder="time of day">
+    <input name="feeding[ounces]" type="number" placeholder="number of ounces">
+    <button type="submit">Show Feedings</button>
+
+  </form>
+</body>
+
+</html>
