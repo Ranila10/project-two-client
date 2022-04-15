@@ -1,4 +1,5 @@
-const authFeedingEvents = require('./events.js')
+ const authFeedingEvents = require('./events.js')
+
 $(() => {
   $('#sign-up-form').on('submit', authFeedingEvents.onSignUp)
 
@@ -9,6 +10,6 @@ $(() => {
   $('#update-password-form').on('submit', authFeedingEvents.onUpdatePassword)
 
   $('#sign-out-button').on('click', authFeedingEvents.onSignOut)
-  $('#feeding-form').on('submit', authFeedingEvents.onCreate)
+  $('.feeding-form').on('submit', authFeedingEvents.onCreate)
   
 })

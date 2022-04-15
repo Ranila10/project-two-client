@@ -4,7 +4,7 @@ const store = require('./store.js')
 const signUp = function (data) {
   return $.ajax({
     method: 'POST',
-    url: config.apiUrl + 'sign-up',
+    url: config.apiUrl + '/sign-up',
     data
   })
 }
@@ -12,53 +12,44 @@ const signUp = function (data) {
 const signIn = function (data) {
   return $.ajax({
     method: 'POST',
-    url: config.apiUrl + 'sign-in',
+    url: config.apiUrl + '/sign-in',
     data
   })
 }
-// const store = require('./store.js')
+// server expect format of : req.body.passwords.old
+// current request look like : body.credential.password-new 
 const changePassword = function (data) {
+    console.log(data)
+    console.log(store.user.token)
+    
   return $.ajax({
-    method: 'POST',
-    url: config.apiUrl + 'change-password',
-    data
-  })
-}
-const updatePassword = function (data) {
-  return $.ajax({
-    method: 'POST',
-    url: config.apiUrl + 'update-password',
-    data
-  })
-}
-const FeedingTracker = function () {
-  return $.ajax({
-    method: 'POST',
-    url: 'http://localhost:4741',
+    method: 'PATCH',
+    url: config.apiUrl + '/change-password',
     headers: {
-      Authorization: 'Bearer ' + store.user.token
-
-    }
+        Authorization: 'Bearer ' + store.user.token
+    },
+    data
   })
 }
+
 const day = function () {
   return $.ajax({
     method: 'POST',
-    url: 'http://localhost:4741',
-  })
+    url: config.apiUrl + 'day',
+})
 }
 
 const time = function () {
   return $.ajax({
     method: 'POST',
-    url: 'http://localhost:4741',
+    url: 'time',
   })
 }
 
 const ounces = function () {
   return $.ajax({
     method: 'POST',
-    url: 'http://localhost:4741',
+    url: config.apiUrl + 'ounces',
   })
 }
 const signOut = function () {
@@ -78,28 +69,29 @@ const index = function () {
   })
 }
 
-const destroy = function (id) {
+const destroy = function (feeding) {
   return $.ajax({
-    url: config.apiUrl + '/feedings/' + id,
+    url: config.apiUrl + '/feedings/' + feeding,
     method: 'DELETE'
   })
 }
 
-const update = function (id, formData) {
+const update = function (feeding, formData) {
   return $.ajax({
-    url: config.apiUrl + '/feedings/' + id,
+    url: config.apiUrl + '/feedings/' + feeding,
     method: 'PATCH',
-    // include the book data that we will use to update the book
     data: formData
   })
 }
 
-const create = function (formData) {
+const create = function (data) {
   return $.ajax({
     url: config.apiUrl + '/feedings',
     method: 'POST',
-    // include the book data that we will use to create the book
-    data: formData
+    headers: {
+        Authorization: 'Bearer ' + store.user.token
+    },
+    data: {feeding: data}
   })
 }
 
@@ -107,8 +99,6 @@ module.exports = {
   signUp,
   signIn,
   changePassword,
-  updatePassword,
-  FeedingTracker,
   index,
   destroy,
   update,
