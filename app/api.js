@@ -64,15 +64,22 @@ const signOut = function () {
 }
 const index = function () {
   return $.ajax({
+    method: 'GET',
     url: config.apiUrl + '/feedings',
-    method: 'GET'
+    headers: {
+        Authorization: 'Bearer ' + store.user.token
+    }
   })
 }
 
 const destroy = function (feeding) {
   return $.ajax({
     url: config.apiUrl + '/feedings/' + feeding,
-    method: 'DELETE'
+    method: 'DELETE',
+    headers: {
+        Authorization: 'Bearer ' + store.user.token
+    },
+    data: {feeding: data}
   })
 }
 
@@ -80,18 +87,22 @@ const update = function (feeding, formData) {
   return $.ajax({
     url: config.apiUrl + '/feedings/' + feeding,
     method: 'PATCH',
-    data: formData
+    headers: {
+        Authorization: 'Bearer ' + store.user.token
+    },
+    data: {feeding: data}
   })
 }
 
 const create = function (data) {
   return $.ajax({
+      method: 'POST',
     url: config.apiUrl + '/feedings',
-    method: 'POST',
+
     headers: {
         Authorization: 'Bearer ' + store.user.token
     },
-    data: {feeding: data}
+    data
   })
 }
 

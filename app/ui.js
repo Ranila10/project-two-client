@@ -56,17 +56,21 @@ const onIndexSuccess = function (responseData) {
     let feedingsHtml = ''
     feedings.forEach(feeding => {
 feedingsHtml += `
-      <h4>Title: ${feeding.title}</h4>
-      <p>Author: ${feeding.author}</p>
+       <div>
+      <h4>Day: ${feeding.day}</h4>
+      <p>Time: ${feeding.time}</p>
+      <p>Ounces: ${feeding._ounces}</p>
       <p>ID: ${feeding._id}</p>
       <form class="feedings-update-dynamic" data-id=${feeding._id}>
-        <input type="text" name="feeding[title]" placeholder="Feeding Title Here" required>
-        <input type="text" name="feeding[author]" placeholder="Feeding Author Here" required>
+        <input type="text" name="feeding[day]" placeholder="Feeding Day Here" required>
+        <input type="text" name="feeding[time]" placeholder="Feeding Time Here" required>
         <button type="submit">Update Feeding</button>
       </form>
       <button class='feeding-destroy-dynamic' data-id=${feeding._id}>Delete Feeding</button>
       <br>
+      </div>
     `
+
   })
 
   $('#feedings-display').html(feedingsHtml)
@@ -84,16 +88,7 @@ const onShowSuccess = function (responseData) {
   $('form').trigger('reset')
 }
 
-const onDestroySuccess = function () {
-  $('#feedings-destroy-message').html('Feeding successfully deleted!')
-  $('#feedings-display').html('Feedings have changed! Click "Get All Feedings" again to see all the feedings')
-  $('#feedings-destroy-message').addClass('success')
-  setTimeout(() => {
-    $('#feedings-destroy-message').html('')
-    $('#feedings-destroy-message').removeClass('success')
-  }, 5000)
-  $('form').trigger('reset')
-}
+
 
 const onUpdateSuccess = function (responseData) {
   $('#feedings-update-message').html('You successfully updated feeding')
@@ -121,7 +116,6 @@ module.exports = {
   onCreateSuccess,
   onIndexSuccess,
   onShowSuccess,
-  onDestroySuccess,
   onPasswordUpdateFailure,
   onPasswordUpdateSuccess, 
   onUpdateSuccess

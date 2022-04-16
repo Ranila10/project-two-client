@@ -34,6 +34,7 @@ const onSignIn = function (event) {
     console.log(store)
     })
     .then(() => authUi.onSignInSuccess())
+    .then(onIndexFeedings)
     .catch(() => authUi.onSignInFailure())
 }
 const onUpdatePassword = function (event) {
@@ -69,16 +70,16 @@ event.preventDefault()
   console.log(data)
 
   authApi.create(data)
-    .then(() => authUi.onCreatSuccess())
-    .catch(() => authUi.onCreatFailure())
+    .then(() => authUi.onCreateSuccess())
+    .catch(() => authUi.onCreateFailure())
 
 }
 
 const onIndexFeedings = function () {
 
-  api.index()
-    .then(ui.onIndexSuccess)
-    .catch(ui.onError)
+  authApi.index()
+    .then(authUi.onIndexSuccess)
+    .catch(authUi.onError)
 }
 
 const onShowFeeding = function (event) {
