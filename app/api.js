@@ -15,17 +15,16 @@ const signIn = function (data) {
     data
   })
 }
-// server expect format of : req.body.passwords.old
-// current request look like : body.credential.password-new 
+
 const changePassword = function (data) {
-    console.log(data)
-    // console.log(store.user.token)
-    
+  console.log(data)
+  // console.log(store.user.token)
+
   return $.ajax({
     method: 'PATCH',
     url: config.apiUrl + '/change-password',
     headers: {
-        Authorization: 'Bearer ' + store.user.token
+      Authorization: 'Bearer ' + store.user.token
     },
     data: data
   })
@@ -34,19 +33,19 @@ const changePassword = function (data) {
 const day = function () {
   return $.ajax({
     method: 'POST',
-    url: config.apiUrl + 'day',
+    url: config.apiUrl + '/day',
     headers: {
-        Authorization: 'Bearer ' + store.user.token
+      Authorization: 'Bearer ' + store.user.token
     }
-})
+  })
 }
 
 const time = function () {
   return $.ajax({
     method: 'POST',
-    url: 'time',
+    url: config.apiUrl + '/time',
     headers: {
-        Authorization: 'Bearer ' + store.user.token
+      Authorization: 'Bearer ' + store.user.token
     }
   })
 }
@@ -54,16 +53,16 @@ const time = function () {
 const ounces = function () {
   return $.ajax({
     method: 'POST',
-    url: config.apiUrl + 'ounces',
+    url: config.apiUrl + '/ounces',
     headers: {
-        Authorization: 'Bearer ' + store.user.token
+      Authorization: 'Bearer ' + store.user.token
     }
   })
 }
 const signOut = function () {
   return $.ajax({
     method: 'DELETE',
-    url: config.apiUrl + 'sign-out',
+    url: config.apiUrl + '/sign-out',
     headers: {
       Authorization: 'Bearer ' + store.user.token
       // sends the 'user:token' from 'store.js'
@@ -75,7 +74,7 @@ const index = function () {
     method: 'GET',
     url: config.apiUrl + '/feedings',
     headers: {
-        Authorization: 'Bearer ' + store.user.token
+      Authorization: 'Bearer ' + store.user.token
     }
   })
 }
@@ -85,9 +84,9 @@ const destroy = function (feeding) {
     url: config.apiUrl + '/feedings/' + feeding,
     method: 'DELETE',
     headers: {
-        Authorization: 'Bearer ' + store.user.token
-    },
-    data: {feeding: data}
+      Authorization: 'Bearer ' + store.user.token
+    }
+
   })
 }
 
@@ -96,19 +95,19 @@ const update = function (feeding, formData) {
     url: config.apiUrl + '/feedings/' + feeding,
     method: 'PATCH',
     headers: {
-        Authorization: 'Bearer ' + store.user.token
-    },
-    data: {feeding: data}
+      Authorization: 'Bearer ' + store.user.token
+    }
+
   })
 }
 
 const create = function (data) {
   return $.ajax({
-      method: 'POST',
+    method: 'POST',
     url: config.apiUrl + '/feedings',
 
     headers: {
-        Authorization: 'Bearer ' + store.user.token
+      Authorization: 'Bearer ' + store.user.token
     },
     data
   })

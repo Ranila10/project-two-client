@@ -10,16 +10,15 @@ const onSignUpFailure = function () {
 const onSignInSuccess = function () {
   console.log('signIn')
   console.log()
-  $('#auth-display').html('<p>Error while signing in</p>')
+  $('#auth-display').html('<p>successfully signing in</p>').show().fadeOut(3000)
 }
 const onSignInFailure = function () {
   $('#auth-display').html('<p>Error while signing in</p>')
-  
 }
 const onPasswordUpdateSuccess = function () {
   console.log('passwordSuccess')
   console.log()
-  $('#auth-display').html('<p>update password </p>')
+  $('#auth-display').html('<p>update password </p>').show().fadeOut(3000)
 }
 
 const onPasswordUpdateFailure = function () {
@@ -29,13 +28,15 @@ const onPasswordUpdateFailure = function () {
 }
 
 const onSignOutSuccess = function () {
-  $('#auth-display').html('<p>User signed out successfully</p>')
+  console.log('text')
+  $('#auth-display').html('<p>User signed out successfully</p>').show().fadeOut(3000)
+  $('#feedings-display').hide()
 }
 const onSignOutFailure = function () {
   $('#auth-display').html('<p>Error while signing out</p>')
 }
 const onCreateFailure = function () {
-  $('#auth-display').html('<p>CREAT ERROR</p>').show()
+  $('#auth-display').html('<p>CREAT ERROR</p>')
 }
 
 const onChangePasswordSuccess = function () {
@@ -46,31 +47,21 @@ const onChangePasswordFailure = function () {
   $('#auth-display').html('<p>CHANGE ERROR</p>')
 }
 const onCreateSuccess = function () {
-  $('#auth-display').html('<p>created successfully</p>').show().fadeOut(2000)
-//   $('form').trigger('reset').hide()
-//   $('#feedings-create-message').html('You created a new feeding!')
-//   $('#feedings-display').html('Feedings have changed! Click "Show Feedings" again to see all the feedings.')
-//   $('#Feedings-create-message').addClass('success')
-//   setTimeout(() => {
-//     $('#feedings-create-message').html('')
-//     $('#feedings-create-message').removeClass('success')
-//   }, 5000)
-
-//   // reset all forms
-//   $('form').trigger('reset')
+  $('#auth-display').html('<p>created successfully</p>').show()
 }
 
 const onIndexSuccess = function (responseData) {
-    const feedings = responseData.feedings
-    console.log(responseData)
-    let feedingsHtml = ''
-    feedings.forEach(feeding => {
-feedingsHtml += `
+  const feedings = responseData.feedings
+  console.log(responseData)
+  let feedingsHtml = ''
+  feedings.forEach(feeding => {
+    feedingsHtml += `
        <div>
       <h4>Day: ${feeding.day}</h4>
       <p>Time: ${feeding.time}</p>
-      <p>Ounces: ${feeding._Oz}</p>
+      <p>Ounces: ${feeding.ounces}</p>
       <p>ID: ${feeding._id}</p>
+     
       <form class="feedings-update-dynamic" data-id=${feeding._id}>
         <input type="text" name="feeding[day]" placeholder=" Day " required>
         <input type="time" name="feeding[time]" placeholder="Feeding Time" required>
@@ -81,7 +72,6 @@ feedingsHtml += `
       <br>
       </div>
     `
-
   })
 
   $('#feedings-display').html(feedingsHtml).show()
@@ -102,8 +92,6 @@ const onShowSuccess = function (responseData) {
 
   $('form').trigger('reset')
 }
-
-
 
 const onUpdateSuccess = function (responseData) {
   $('#feedings-update-message').html('You successfully updated feeding')
@@ -133,7 +121,7 @@ module.exports = {
   onIndexFailure,
   onShowSuccess,
   onPasswordUpdateFailure,
-  onPasswordUpdateSuccess, 
+  onPasswordUpdateSuccess,
   onUpdateSuccess,
   onChangePasswordSuccess,
   onChangePasswordFailure

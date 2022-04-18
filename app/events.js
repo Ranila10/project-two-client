@@ -3,7 +3,6 @@ const authUi = require('./ui.js')
 const getFormFields = require('../lib/get-form-fields.js')
 const store = require('./store.js')
 
-
 const onSignUp = function (event) {
   event.preventDefault()
   console.log('now here')
@@ -26,12 +25,12 @@ const onSignIn = function (event) {
   console.log(data)
 
   authApi.signIn(data)
-//   api call starts promise chain 
-//  will pass response to .then - teh function waiting for the promise
+  //   api call starts promise chain
+  //  will pass response to .then - teh function waiting for the promise
     .then((responseData) => {
-    console.log(responseData)
-    store.user = responseData.user
-    console.log(store)
+      console.log(responseData)
+      store.user = responseData.user
+      console.log(store)
     })
     .then(() => authUi.onSignInSuccess())
     .then(onIndexFeedings)
@@ -62,20 +61,16 @@ const onChangePassword = function (event) {
     .then(() => authUi.onChangePasswordSuccess())
     .catch(() => authUi.onChangePasswordFailure())
 }
-const onSignOut = function (event) {
-  event.preventDefault()
-  console.log('now here')
+const onSignOut = function () {
+  console.log('now in on sign out')
 
-  const form = event.target
-  const data = getFormFields(form)
-  console.log(data)
-
-  authApi.signOut()
-    .then(() => authUi.onSignOutSuccess())
+  authApi
+    .signOut()
+    .then((response) => authUi.onSignOutSuccess(response))
     .catch(() => authUi.onSignOutFailure())
 }
-const onCreate = function(event) {
-event.preventDefault()
+const onCreate = function (event) {
+  event.preventDefault()
   console.log(onCreate)
 
   const form = event.target
@@ -85,11 +80,9 @@ event.preventDefault()
   authApi.create(data)
     .then(() => authUi.onCreateSuccess())
     .catch(() => authUi.onCreateFailure())
-
 }
 
 const onIndexFeedings = function () {
-
   authApi.index()
     .then(authUi.onIndexSuccess)
     .catch(authUi.onError)
@@ -97,23 +90,22 @@ const onIndexFeedings = function () {
 
 const onShowFeeding = function (event) {
   event.preventDefault()
-   const formData = getFormFields(event.target)
-    api.show(formData.feeding.feeding)
-     
-    .then(ui.onShowSuccess)
+  const formData = getFormFields(event.target)
+  authApi.show(formData.feeding.feeding)
 
-    .catch(ui.onShowFailure)
+    .then(authUi.onShowSuccess)
+
+    .catch(authUi.onShowFailure)
 }
 
 const onDestroyFeeding = function (event) {
   event.preventDefault()
   const formData = getFormFields(event.target)
-  api.destroy(formData.feeding.feeding)
+  authApi.destroy(formData.feeding.feeding)
 
-    .then(ui.onDestroySuccess)
-    .catch(ui.onError)
+    .then(authUi.onDestroySuccess)
+    .catch(authUi.onError)
 }
-
 
 module.exports = {
   onSignUp,
@@ -124,6 +116,6 @@ module.exports = {
   onCreate,
   onIndexFeedings,
   onShowFeeding,
-  onDestroyFeeding,
+  onDestroyFeeding
 //   onUpdateFeeding
 }

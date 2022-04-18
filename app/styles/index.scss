@@ -8,7 +8,7 @@ div.left-display {
     position: fixed;
     height: 4%;
     width: 50;
-    color: yellow;
+    color: blue;
 }
 .header {
     height: 300px;
@@ -26,7 +26,9 @@ h1 {
     font-weight: bolder;
 }
 body {
-    background-color: yellow;
+    color: yellow;
+    background: blue;
+    // image go here
     padding: 10px;
     margin: 5px;
 }
