@@ -1,4 +1,3 @@
-
 const config = require('./config.js')
 const store = require('./store.js')
 const signUp = function (data) {
@@ -20,7 +19,7 @@ const signIn = function (data) {
 // current request look like : body.credential.password-new 
 const changePassword = function (data) {
     console.log(data)
-    console.log(store.user.token)
+    // console.log(store.user.token)
     
   return $.ajax({
     method: 'PATCH',
@@ -28,7 +27,7 @@ const changePassword = function (data) {
     headers: {
         Authorization: 'Bearer ' + store.user.token
     },
-    data
+    data: data
   })
 }
 
@@ -36,6 +35,9 @@ const day = function () {
   return $.ajax({
     method: 'POST',
     url: config.apiUrl + 'day',
+    headers: {
+        Authorization: 'Bearer ' + store.user.token
+    }
 })
 }
 
@@ -43,6 +45,9 @@ const time = function () {
   return $.ajax({
     method: 'POST',
     url: 'time',
+    headers: {
+        Authorization: 'Bearer ' + store.user.token
+    }
   })
 }
 
@@ -50,6 +55,9 @@ const ounces = function () {
   return $.ajax({
     method: 'POST',
     url: config.apiUrl + 'ounces',
+    headers: {
+        Authorization: 'Bearer ' + store.user.token
+    }
   })
 }
 const signOut = function () {

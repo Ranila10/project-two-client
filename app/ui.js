@@ -14,6 +14,7 @@ const onSignInSuccess = function () {
 }
 const onSignInFailure = function () {
   $('#auth-display').html('<p>Error while signing in</p>')
+  
 }
 const onPasswordUpdateSuccess = function () {
   console.log('passwordSuccess')
@@ -34,20 +35,29 @@ const onSignOutFailure = function () {
   $('#auth-display').html('<p>Error while signing out</p>')
 }
 const onCreateFailure = function () {
-  $('#auth-display').html('<p>Try again</p>')
+  $('#auth-display').html('<p>CREAT ERROR</p>').show()
+}
+
+const onChangePasswordSuccess = function () {
+  $('#auth-display').html('<p>Password successfully change</p>')
+}
+
+const onChangePasswordFailure = function () {
+  $('#auth-display').html('<p>CHANGE ERROR</p>')
 }
 const onCreateSuccess = function () {
-  $('#auth-display').html('<p>Try again</p>')
-  $('#feedings-create-message').html('You created a new feeding!')
-  $('#feedings-display').html('Feedings have changed! Click "Show Feedings" again to see all the feedings.')
-  $('#Feedings-create-message').addClass('success')
-  setTimeout(() => {
-    $('#feedings-create-message').html('')
-    $('#feedings-create-message').removeClass('success')
-  }, 5000)
+  $('#auth-display').html('<p>created successfully</p>').show().fadeOut(2000)
+//   $('form').trigger('reset').hide()
+//   $('#feedings-create-message').html('You created a new feeding!')
+//   $('#feedings-display').html('Feedings have changed! Click "Show Feedings" again to see all the feedings.')
+//   $('#Feedings-create-message').addClass('success')
+//   setTimeout(() => {
+//     $('#feedings-create-message').html('')
+//     $('#feedings-create-message').removeClass('success')
+//   }, 5000)
 
-  // reset all forms
-  $('form').trigger('reset')
+//   // reset all forms
+//   $('form').trigger('reset')
 }
 
 const onIndexSuccess = function (responseData) {
@@ -59,11 +69,12 @@ feedingsHtml += `
        <div>
       <h4>Day: ${feeding.day}</h4>
       <p>Time: ${feeding.time}</p>
-      <p>Ounces: ${feeding._ounces}</p>
+      <p>Ounces: ${feeding._Oz}</p>
       <p>ID: ${feeding._id}</p>
       <form class="feedings-update-dynamic" data-id=${feeding._id}>
-        <input type="text" name="feeding[day]" placeholder="Feeding Day Here" required>
-        <input type="text" name="feeding[time]" placeholder="Feeding Time Here" required>
+        <input type="text" name="feeding[day]" placeholder=" Day " required>
+        <input type="time" name="feeding[time]" placeholder="Feeding Time" required>
+        <input type="text" name="feeding[ounces]" placeholder="number" required>
         <button type="submit">Update Feeding</button>
       </form>
       <button class='feeding-destroy-dynamic' data-id=${feeding._id}>Delete Feeding</button>
@@ -73,7 +84,11 @@ feedingsHtml += `
 
   })
 
-  $('#feedings-display').html(feedingsHtml)
+  $('#feedings-display').html(feedingsHtml).show()
+}
+
+const onIndexFailure = function () {
+  $('#feeding-display').html('<p>INDEX ERROR</p>').show()
 }
 
 const onShowSuccess = function (responseData) {
@@ -115,8 +130,12 @@ module.exports = {
   onCreateFailure,
   onCreateSuccess,
   onIndexSuccess,
+  onIndexFailure,
   onShowSuccess,
   onPasswordUpdateFailure,
   onPasswordUpdateSuccess, 
-  onUpdateSuccess
+  onUpdateSuccess,
+  onChangePasswordSuccess,
+  onChangePasswordFailure
+
 }

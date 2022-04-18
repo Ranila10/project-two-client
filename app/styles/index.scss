@@ -1,1 +1,32 @@
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
+div.displays {
+    float: right;
+    height: 6%;
+    width: 50%;
+}
+div.left-display {
+    position: fixed;
+    height: 4%;
+    width: 50;
+    color: yellow;
+}
+.header {
+    height: 300px;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: blue;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: 100px;
+    font-style: italic;
+    font-weight: bolder;
+}
+body {
+    background-color: yellow;
+    padding: 10px;
+    margin: 5px;
+}

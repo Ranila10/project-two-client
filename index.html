@@ -15,8 +15,12 @@
 
 <body>
   <h1>Feeding Tracker</h1>
+  <div class="registration" id="start">
+    <section id="feeding display"></section>
+    <button class="button1" id="to-register" type="submit">To Register</button>
+    <button class="button1" id="registered" type="submit">Registered</button>
+  </div>
 
-  <h3>Sign Up</h3>
   <form id="sign-up-form">
     <input name="credentials[email]" type="email" placeholder="Email">
     <input name="credentials[password]" type="password" placeholder="Enter password">
@@ -24,44 +28,42 @@
     <button type="submit">Sign Up</button>
   </form>
 
-  <h3>Sign In</h3>
+
   <form id="sign-in-form">
     <input name="credentials[email]" type="email" placeholder="Email">
     <input name="credentials[password]" type="password" placeholder="Enter password">
     <button type="submit">Sign In</button>
-    <button type="submit">sign out</button>
+
   </form>
 
-  <div>
+  <form id="update-password-form">
+    <input name="passwords[current]" type="text" placeholder="Enter old password">
+    <input name="passwords[new]" type="text" placeholder="Enter new password">
+    <button id="update-password" type="submit">Update Password</button>
 
-    <h3 id="sign-out-display">Sign Out</h3>
+  </form>
+
+  <form id="change-password-form">
+    <input name="passwords[new]" type="text" placeholder="Enter  password">
+    <input name="passwords[new]" type="text" placeholder="Enter Password Again">
+    <button id="change-password" type="submit">Change Password</button>
+
+  </form>
+
+
+  <div>
     <button id="sign-out-button">Sign Out</button>
     <section id="auth-display"></section>
     <div id="contentShowHide">
 
 
-      <h3>All Feeding</h3>
-      <form id="start feeding">
-        <input name="day" type="text" placeholder="Enter day">
-        <button type="submit">Start Feeding</button>
-      </form>
-
-      <h4>Add New Feeding</h4>
-      <form class="feeding-form">
-        <button type="submit">Enter Feedings</button>
+      <form id="feeding-form">
+        <button type="submit">Create</button>
         <input name="feeding[day]" type="text" placeholder="Day">
         <input name="feeding[time]" type="time" placeholder="time of day">
         <input name="feeding[ounces]" type="number" placeholder="number of ounces">
       </form>
 
-      <h3>Update Feeding</h3>
-      <form id="update-feeding">
-        <input name="feeding[day]]" type="text" placeholder="Day of the week">
-        <input name="feeding[time]" type="time" placeholder="Time of the day">
-        <input name="feeding[ounces]" type="number" placeholder="ounces per serve">
-        <button type="submit">Update Feedings</button>
-
-      </form>
       <section id="feedings-display"></section>
     </div>
   </div>
