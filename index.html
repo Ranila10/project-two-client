@@ -36,15 +36,8 @@
 
   </form>
 
-  <form id="update-password-form">
-    <input name="passwords[current]" type="text" placeholder="Enter old password">
-    <input name="passwords[new]" type="text" placeholder="Enter new password">
-    <button id="update-password" type="submit">Update Password</button>
-
-  </form>
-
   <form id="change-password-form">
-    <input name="passwords[new]" type="text" placeholder="Enter  password">
+    <input name="passwords[old]" type="text" placeholder="Enter  password">
     <input name="passwords[new]" type="text" placeholder="Enter Password Again">
     <button id="change-password" type="submit">Change Password</button>
 
@@ -56,7 +49,7 @@
     <input name="feeding[ounces]" type="number" placeholder="number of ounces">
     <button type="submit">Create</button>
   </form>
-
+  <button id="show-feeding">show feedings</button>
 
   <div>
     <button id="sign-out-button">Sign Out</button>

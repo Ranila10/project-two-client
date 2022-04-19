@@ -57,7 +57,7 @@ const onChangePassword = function (event) {
   const data = getFormFields(form)
   console.log(data)
 
-  authApi.onChangePassword(data)
+  authApi.changePassword(data)
     .then(() => authUi.onChangePasswordSuccess())
     .catch(() => authUi.onChangePasswordFailure())
 }
@@ -82,6 +82,15 @@ const onCreate = function (event) {
     .catch(() => authUi.onCreateFailure())
 }
 
+const onUpdateFeeding = function (event) {
+  event.preventDefault()
+  const formData = getFormFields(event.target)
+  const id = $(event.target).data('id')
+  authApi.update(id, formData)
+    .then(authUi.onUpdateSuccess)
+    .catch(authUi.onUpdateFailure)
+}
+
 const onIndexFeedings = function () {
   authApi.index()
     .then(authUi.onIndexSuccess)
@@ -100,8 +109,8 @@ const onShowFeeding = function (event) {
 
 const onDestroyFeeding = function (event) {
   event.preventDefault()
-  const formData = getFormFields(event.target)
-  authApi.destroy(formData.feeding.feeding)
+  const id = $(event.target).data('id')
+  authApi.destroy(id)
 
     .then(authUi.onDestroySuccess)
     .catch(authUi.onError)
@@ -116,6 +125,6 @@ module.exports = {
   onCreate,
   onIndexFeedings,
   onShowFeeding,
-  onDestroyFeeding
-//   onUpdateFeeding
+  onDestroyFeeding,
+  onUpdateFeeding
 }

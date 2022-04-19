@@ -96,7 +96,8 @@ const update = function (feeding, formData) {
     method: 'PATCH',
     headers: {
       Authorization: 'Bearer ' + store.user.token
-    }
+    },
+    data: formData
 
   })
 }

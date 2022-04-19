@@ -10,7 +10,9 @@ const onSignUpFailure = function () {
 const onSignInSuccess = function () {
   console.log('signIn')
   console.log()
-  $('#auth-display').html('<p>successfully signing in</p>').show().fadeOut(3000)
+  $('#auth-display').html('<p>successfully signing in</p>').show().fadeOut(5000)
+  $('#change-password-form').show()
+  $('#show-feeding').show()
 }
 const onSignInFailure = function () {
   $('#auth-display').html('<p>Error while signing in</p>')
@@ -18,7 +20,7 @@ const onSignInFailure = function () {
 const onPasswordUpdateSuccess = function () {
   console.log('passwordSuccess')
   console.log()
-  $('#auth-display').html('<p>update password </p>').show().fadeOut(3000)
+  $('#auth-display').html('<p>update password </p>').show().fadeOut(5000)
 }
 
 const onPasswordUpdateFailure = function () {
@@ -29,11 +31,17 @@ const onPasswordUpdateFailure = function () {
 
 const onSignOutSuccess = function () {
   console.log('text')
-  $('#auth-display').html('<p>User signed out successfully</p>').show().fadeOut(3000)
+  $('#auth-display').html('<p>User signed out successfully</p>').show().fadeOut(5000)
   $('#feedings-display').hide()
+  $('#change-password-form').hide()
+  $('#show-feeding').hide()
 }
 const onSignOutFailure = function () {
   $('#auth-display').html('<p>Error while signing out</p>')
+}
+
+const onUpdateFailure = function () {
+  $('#auth-display').html('<p>Error while updating</p>')
 }
 const onCreateFailure = function () {
   $('#auth-display').html('<p>CREAT ERROR</p>')
@@ -68,7 +76,7 @@ const onIndexSuccess = function (responseData) {
         <input type="text" name="feeding[ounces]" placeholder="number" required>
         <button type="submit">Update Feeding</button>
       </form>
-      <button class='feeding-destroy-dynamic' data-id=${feeding._id}>Delete Feeding</button>
+      <button class='feedings-destroy-dynamic' data-id=${feeding._id}>Delete Feeding</button>
       <br>
       </div>
     `
@@ -95,7 +103,7 @@ const onShowSuccess = function (responseData) {
 
 const onUpdateSuccess = function (responseData) {
   $('#feedings-update-message').html('You successfully updated feeding')
-  $('#feedings-display').html('Feedings have changed! Click "Show Feedings" again to see all the feedings.')
+  $('#feedings-display').html('Feedings update successfully').show().fadeOut(5000)
 
   $('#feedings-update-message').addClass('success')
 
@@ -123,6 +131,7 @@ module.exports = {
   onPasswordUpdateFailure,
   onPasswordUpdateSuccess,
   onUpdateSuccess,
+  onUpdateFailure,
   onChangePasswordSuccess,
   onChangePasswordFailure
 
