@@ -11,6 +11,7 @@ const onSignInSuccess = function () {
   $('#auth-display').html('<p>successfully signing in</p>').show().fadeOut(5000)
   $('#change-password-form').show()
   $('#show-feeding').show()
+  $('form').trigger('reset')
 }
 const onSignInFailure = function () {
   $('#auth-display').html('<p>Error while signing in</p>')
