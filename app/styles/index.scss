@@ -14,8 +14,19 @@ div.left-display {
     height: 300px;
 }
 
+body {
+    color: black;
+    font-weight: bold;
+    background: blue;
+    background-image: url("http://www.clker.com/cliparts/V/T/T/E/G/H/baby-bottle-blue-yellow-md.png");
+    // image go here
+    padding: 10px;
+    margin: 5px;
+}
+
 h1 {
     display: flex;
+    color: yellow;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -24,12 +35,4 @@ h1 {
     font-size: 100px;
     font-style: italic;
     font-weight: bolder;
-}
-body {
-    color: yellow;
-    background: blue;
-    background-image: url("http://www.clker.com/cliparts/V/T/T/E/G/H/baby-bottle-blue-yellow-md.png");
-    // image go here
-    padding: 10px;
-    margin: 5px;
 }

@@ -8,8 +8,6 @@ const onSignUpFailure = function () {
   $('#auth-display').html('<p>Error while signing up</p>')
 }
 const onSignInSuccess = function () {
-  console.log('signIn')
-  console.log()
   $('#auth-display').html('<p>successfully signing in</p>').show().fadeOut(5000)
   $('#change-password-form').show()
   $('#show-feeding').show()
