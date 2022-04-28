@@ -5,12 +5,8 @@ const store = require('./store.js')
 
 const onSignUp = function (event) {
   event.preventDefault()
-  console.log('now here')
-
   const form = event.target
   const data = getFormFields(form)
-  console.log(data)
-
   authApi
     .signUp(data)
     .then((response) => authUi.onSignUpSuccess(response))
@@ -18,19 +14,15 @@ const onSignUp = function (event) {
 }
 const onSignIn = function (event) {
   event.preventDefault()
-  console.log('now here')
 
   const form = event.target
   const data = getFormFields(form)
-  console.log(data)
 
   authApi.signIn(data)
   //   api call starts promise chain
   //  will pass response to .then - teh function waiting for the promise
     .then((responseData) => {
-      console.log(responseData)
       store.user = responseData.user
-      console.log(store)
     })
     .then(() => authUi.onSignInSuccess())
     .then(onIndexFeedings)
@@ -38,11 +30,9 @@ const onSignIn = function (event) {
 }
 const onUpdatePassword = function (event) {
   event.preventDefault()
-  console.log('update')
 
   const form = event.target
   const data = getFormFields(form)
-  console.log(data)
 
   authApi.onUpdatePassword(data)
     .then(() => authUi.onUpdatePasswordSuccess())
@@ -51,19 +41,15 @@ const onUpdatePassword = function (event) {
 
 const onChangePassword = function (event) {
   event.preventDefault()
-  console.log('update')
 
   const form = event.target
   const data = getFormFields(form)
-  console.log(data)
 
   authApi.changePassword(data)
     .then(() => authUi.onChangePasswordSuccess())
     .catch(() => authUi.onChangePasswordFailure())
 }
 const onSignOut = function () {
-  console.log('now in on sign out')
-
   authApi
     .signOut()
     .then((response) => authUi.onSignOutSuccess(response))
@@ -71,11 +57,9 @@ const onSignOut = function () {
 }
 const onCreate = function (event) {
   event.preventDefault()
-  console.log(onCreate)
 
   const form = event.target
   const data = getFormFields(form)
-  console.log(data)
 
   authApi.create(data)
     .then(() => authUi.onCreateSuccess())

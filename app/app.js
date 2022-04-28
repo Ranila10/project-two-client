@@ -29,6 +29,6 @@ $(() => {
   $('#sign-up-form').hide()
   $('#sign-in-form').hide()
   $('#feeding-form').hide()
-  $('#create-form').show()
+  $('#feeding-form').on('submit', authFeedingEvents.onCreate)
   $('#show-feeding').on('click', authFeedingEvents.onIndexFeedings)
 })

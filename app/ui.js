@@ -2,38 +2,34 @@ const store = require('./store.js')
 const onSignUpSuccess = function (response) {
   $('#auth-display').html('<p>User signed up successfully</p>')
   store.user = response.user
-  console.log(response)
 }
 const onSignUpFailure = function () {
-  $('#auth-display').html('<p>Error while signing up</p>')
+  $('#auth-display').html('<p>Error while signing up</p>').show().fadeOut(8000)
 }
 const onSignInSuccess = function () {
   $('#auth-display').html('<p>successfully signing in</p>').show().fadeOut(5000)
   $('#change-password-form').show()
   $('#show-feeding').show()
   $('form').trigger('reset')
+  $('#feeding-form').show()
 }
 const onSignInFailure = function () {
-  $('#auth-display').html('<p>Error while signing in</p>')
+  $('#auth-display').html('<p>Error while signing in</p>').show()
 }
 const onPasswordUpdateSuccess = function () {
-  console.log('passwordSuccess')
-  console.log()
-  $('#auth-display').html('<p>update password </p>').show().fadeOut(5000)
+  $('#auth-display').html('<p>update password </p>').show()
 }
 
 const onPasswordUpdateFailure = function () {
-  console.log('passwordFailure')
-  console.log()
-  $('#auth-display').html('<p>update password fail</p>')
+  $('#auth-display').html('<p>update password fail</p>').show()
 }
 
 const onSignOutSuccess = function () {
-  console.log('text')
-  $('#auth-display').html('<p>User signed out successfully</p>').show().fadeOut(5000)
+  $('#auth-display').html('<p>User signed out successfully</p>').show().fadeOut(6000)
   $('#feedings-display').hide()
   $('#change-password-form').hide()
   $('#show-feeding').hide()
+  $('#feeding-form').hide()
 }
 const onSignOutFailure = function () {
   $('#auth-display').html('<p>Error while signing out</p>')
@@ -47,23 +43,30 @@ const onCreateFailure = function () {
 }
 
 const onChangePasswordSuccess = function () {
-  $('#auth-display').html('<p>Password successfully change</p>')
+  $('#auth-display').html('<p>Password successfully change</p>').show()
 }
 
 const onChangePasswordFailure = function () {
-  $('#auth-display').html('<p>CHANGE ERROR</p>')
+  $('#auth-display').html('<p>CHANGE ERROR</p>').show()
 }
 const onCreateSuccess = function () {
   $('#auth-display').html('<p>created successfully</p>').show()
 }
 
+const onDestroySuccess = function () {
+  $('#auth-display').html('<p> successfully destroy</p>').show()
+}
+
+const onDestroyFailure = function () {
+  $('#auth-display').html('<p>destroy ERROR</p>').show()
+}
+
 const onIndexSuccess = function (responseData) {
   const feedings = responseData.feedings
-  console.log(responseData)
   let feedingsHtml = ''
   feedings.forEach(feeding => {
     feedingsHtml += `
-       <div>
+       <div class='feeding'>
       <h4>Day: ${feeding.day}</h4>
       <p>Time: ${feeding.time}</p>
       <p>Ounces: ${feeding.ounces}</p>
@@ -82,6 +85,9 @@ const onIndexSuccess = function (responseData) {
   })
 
   $('#feedings-display').html(feedingsHtml).show()
+  if (feedings.length === 0) {
+    $('#feedings-display').html('no feedings')
+  }
 }
 
 const onIndexFailure = function () {
@@ -89,7 +95,6 @@ const onIndexFailure = function () {
 }
 
 const onShowSuccess = function (responseData) {
-  console.log(responseData)
   const feedingHtml = `
     <h4>Title: ${responseData.feeding.title}</h4>
     <p>Author: ${responseData.feeding.author}</p>
@@ -102,7 +107,7 @@ const onShowSuccess = function (responseData) {
 
 const onUpdateSuccess = function (responseData) {
   $('#feedings-update-message').html('You successfully updated feeding')
-  $('#feedings-display').html('Feedings update successfully').show().fadeOut(5000)
+  $('#feedings-display').html('Feedings update successfully').show()
 
   $('#feedings-update-message').addClass('success')
 
@@ -131,6 +136,8 @@ module.exports = {
   onPasswordUpdateSuccess,
   onUpdateSuccess,
   onUpdateFailure,
+  onDestroySuccess,
+  onDestroyFailure,
   onChangePasswordSuccess,
   onChangePasswordFailure
 
