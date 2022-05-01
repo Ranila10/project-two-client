@@ -23,7 +23,7 @@ $(() => {
   $('#change-password-form').on('submit', authFeedingEvents.onChangePassword)
   $('#show-feeding').hide()
 
-  $('#sign-out-button').show()
+  $('#sign-out-button').hide()
   $('#sign-out-form').hide()
   $('#change-password-form').hide()
   $('#sign-up-form').hide()

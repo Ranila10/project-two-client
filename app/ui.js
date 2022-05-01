@@ -1,6 +1,7 @@
 const store = require('./store.js')
 const onSignUpSuccess = function (response) {
-  $('#auth-display').html('<p>User signed up successfully</p>')
+  $('#auth-display').html('<p>User signed up successfully</p>').show()
+  $('#sign-up-form').trigger('reset')
   store.user = response.user
 }
 const onSignUpFailure = function () {
@@ -9,9 +10,15 @@ const onSignUpFailure = function () {
 const onSignInSuccess = function () {
   $('#auth-display').html('<p>successfully signing in</p>').show().fadeOut(5000)
   $('#change-password-form').show()
+  $('#sign-out-button').show()
   $('#show-feeding').show()
   $('form').trigger('reset')
   $('#feeding-form').show()
+  $('#sign-in-form').trigger('reset')
+  $('#sign-up-form').hide()
+  $('#sign-in-form').hide()
+  $('#to-register').hide()
+  $('#registered').hide()
 }
 const onSignInFailure = function () {
   $('#auth-display').html('<p>Error while signing in</p>').show()
@@ -30,6 +37,9 @@ const onSignOutSuccess = function () {
   $('#change-password-form').hide()
   $('#show-feeding').hide()
   $('#feeding-form').hide()
+  $('#to-register').show()
+  $('#registered').show()
+  $('#sign-out-button').hide()
 }
 const onSignOutFailure = function () {
   $('#auth-display').html('<p>Error while signing out</p>')
@@ -44,6 +54,7 @@ const onCreateFailure = function () {
 
 const onChangePasswordSuccess = function () {
   $('#auth-display').html('<p>Password successfully change</p>').show()
+  $('#change-password-form').trigger('reset')
 }
 
 const onChangePasswordFailure = function () {
@@ -86,7 +97,7 @@ const onIndexSuccess = function (responseData) {
 
   $('#feedings-display').html(feedingsHtml).show()
   if (feedings.length === 0) {
-    $('#feedings-display').html('no feedings')
+    $('#feedings-display').html('please create feedings to view resource')
   }
 }
 

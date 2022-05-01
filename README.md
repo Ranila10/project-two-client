@@ -7,7 +7,7 @@ user should be able to keep track of the feeding weekly by using day, time, and 
 user should be able to create feeding.
 user should be able to update feeding.
 user should be able to destroy feeding. 
-
+![wireFrame](p2.jpg)
 
 "this link will direct you to my app" 
 https://ranila10.github.io/project-two-client/
